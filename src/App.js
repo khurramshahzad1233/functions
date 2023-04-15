@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect} from 'react'
+import {Routes,Route,BrowserRouter as Router} from "react-router-dom";
+import "./App.css";
+import WebFont from 'webfontloader';
+import Home from './home/Home';
+import Colorsetting from './color/Colorsetting';
+import Cursor from './cursor/Cursor';
+import Design from './designs/Design';
+import Watch from "./components/watch/Clock"
+import Map from './map/Map';
 
-function App() {
+
+const App = () => {
+
+  const dotcursor=(e)=>{
+    const cursor=document.querySelector(".cursor");
+    cursor.style.top=`${e.pageY-12}px`
+    cursor.style.left=`${e.pageX-12}px`
+  }
+
+  useEffect(()=>{
+   
+
+    WebFont.load({google:{
+      families:["Roboto","Chilanka","Droid Sans","Montserrat","Poppins","Open Sans","Bangers"]
+    }});
+
+
+    window.addEventListener("mousemove",dotcursor)
+    return ()=>{
+      window.removeEventListener("mousemove",dotcursor)
+    };
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Cursor/>
+
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/color' element={<Colorsetting/>}/>
+        <Route path='/design' element={<Design/>}/>
+        <Route path='/watch' element={<Watch/>}/>
+        <Route path='/map' element={<Map/>}/>
+
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+export default App

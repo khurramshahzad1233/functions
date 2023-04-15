@@ -1,0 +1,23 @@
+
+.cursorhover{
+    transform: scale(3);
+    border: none;
+    box-shadow: 0 0 10px red;
+}
+
+
+.alllinks{
+    width: 20vw;
+
+}
+.alllinks>div{
+    width: 100%;
+}
+
+.footerlink{
+    width: 100%;
+    background-color: aqua;
+}
+footer{
+    width: 20vw;
+}
